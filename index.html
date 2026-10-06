@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HASOMAN - Infrastruktur Jaringan</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Background Ambient Glow -->
+    <div class="ambient-glow glow-1"></div>
+    <div class="ambient-glow glow-2"></div>
+
+    <audio id="bgMusic" loop>
+        <source src="inpool.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- NAVBAR ATAS (Search Bar Desktop diletakkan di sini agar selalu tampil) -->
+    <header class="glass-nav">
+        <div class="nav-container">
+            <div class="header-brand">
+                <div class="logo-box">
+                    <img src="sknim.png" alt="Logo Skanam" class="logo-img">
+                </div>
+            </div>
+            
+            <nav class="desktop-menu">
+                <button class="nav-link active" onclick="openTab('beranda')">Beranda</button>
+                <button class="nav-link" onclick="openTab('video')">Tutorial</button>
+                <button class="nav-link" onclick="openTab('jasa')">Layanan</button>
+                <button class="nav-link" onclick="openTab('produk')">Katalog</button>
+                <button class="nav-link" onclick="openTab('game')">Terminal Game</button>
+            </nav>
+
+            <div class="nav-actions">
+                <!-- FITUR SEARCH GLOBAL (LAPTOP/DESKTOP) -->
+                <div class="nav-search hidden-mobile">
+                    <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                    <input type="text" id="desktopSearch" class="search-input" placeholder="Cari hardware, jasa, dll..." onkeyup="cariKonten('desktopSearch')">
+                </div>
+
+                <button id="musicToggle" class="btn-icon" onclick="toggleMusic()">🎵</button>
+                <button class="menu-toggle" onclick="toggleMobileMenu()">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- MOBILE SIDEBAR (Search Bar HP diletakkan di sini) -->
+    <div id="mobileSidebar" class="mobile-sidebar glass-panel">
+        <span class="close-sidebar" onclick="toggleMobileMenu()">&times;</span>
+        <div class="sidebar-links">
+            <!-- FITUR SEARCH GLOBAL (HP) -->
+            <div class="mobile-search">
+                <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                <input type="text" id="mobileSearch" class="search-input" placeholder="Cari layanan, hardware..." onkeyup="cariKonten('mobileSearch')">
+            </div>
+
+            <button class="nav-link active" onclick="openTab('beranda')">Beranda</button>
+            <button class="nav-link" onclick="openTab('video')">Tutorial</button>
+            <button class="nav-link" onclick="openTab('jasa')">Layanan</button>
+            <button class="nav-link" onclick="openTab('produk')">Katalog</button>
+            <button class="nav-link" onclick="openTab('game')">Terminal Game</button>
+        </div>
+    </div>
+
+    <main class="main-container">
+        <!-- TAB 1: BERANDA & ENSIKLOPEDIA -->
+        <section id="beranda" class="tab-content active">
+            <!-- Hero Section -->
+            <div class="hero-section">
+                <div class="hero-text">
+                    <span class="badge-glow">Tingkat Lanjut & Profesional</span>
+                    <h1 class="gradient-text">Arsitektur Jaringan Masa Depan</h1>
+                    <p>Platform pembelajaran dan layanan infrastruktur IT terpadu. Siap menghadapi standarisasi industri dengan teknologi Cisco, MikroTik, dan topologi modern.</p>
+                    <div class="hero-cta">
+                        <button class="btn-primary" onclick="openTab('game')">Uji Keahlianmu 🚀</button>
+                        <a href="#katalog-ensiklopedia" class="btn-secondary">Eksplorasi Hardware</a>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="glass-panel visual-card">
+                        <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=600&q=80" alt="Server Room" class="hero-img">
+                        <div class="floating-badge badge-1">Ping: 12ms</div>
+                        <div class="floating-badge badge-2">System: Online</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ensiklopedia Grid -->
+            <div id="katalog-ensiklopedia" class="section-header mt-10 text-center">
+                <h2 class="section-title gradient-text">Ensiklopedia Hardware</h2>
+            </div>
+
+            <div class="bento-grid">
+                <div class="glass-card" onclick="bukaPopup(this)">
+                    <div class="card-image-box">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRxSua3J6BaIBrq_UpOkiuRziRNHtG4rmK8pDTGCYiQ0g&s=10" alt="Router Cisco">
+                    </div>
+                    <div class="card-info">
+                        <h3>Router Cisco</h3>
+                        <p>Perangkat layer 3 penghubung jaringan yang mengatur rute paket data cerdas.</p>
+                    </div>
+                </div>
+                <div class="glass-card" onclick="bukaPopup(this)">
+                    <div class="card-image-box">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT55E7OoEL4n6rIxTNHXA3VHFBTsFYA0aULDGtjieD0Zw&s=10" alt="Switch">
+                    </div>
+                    <div class="card-info">
+                        <h3>Switch Jaringan</h3>
+                        <p>Beroperasi di Layer 2, mendistribusikan data antar perangkat via MAC Address.</p>
+                    </div>
+                </div>
+                <div class="glass-card" onclick="bukaPopup(this)">
+                    <div class="card-image-box">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTstlYkiJn6IgOQj86fISpFSi2BMCq4ECX--eG-U6FOtVkgWAJ_MMPlZ1Q&s=103" alt="Kabel UTP">
+                    </div>
+                    <div class="card-info">
+                        <h3>Kabel UTP</h3>
+                        <p>Standar transmisi TIA/EIA-568. Mendukung topologi koneksi straight dan crossover.</p>
+                    </div>
+                </div>
+                <div class="glass-card" onclick="bukaPopup(this)">
+                    <div class="card-image-box">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvFA3FzruzU45n2E8Hy_bqL6B9mqdxKku_AeDsXb6kQA&s=10" alt="MikroTik">
+                    </div>
+                    <div class="card-info">
+                        <h3>Router MikroTik</h3>
+                        <p>Manajemen bandwidth, firewall filtering, dan routing tangguh untuk infrastruktur.</p>
+                    </div>
+                </div>
+                <div class="glass-card" onclick="bukaPopup(this)">
+                    <div class="card-image-box">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTRVMWnxwXW73wkMTwI7Lr7fCo_2C280_ykr0D_nTGmHg&s=10" alt="Fiber Optik">
+                    </div>
+                    <div class="card-info">
+                        <h3>Fiber Optik</h3>
+                        <p>Transmisi cahaya berkecepatan tinggi tanpa interferensi elektromagnetik.</p>
+                    </div>
+                </div>
+                <div class="glass-card" onclick="bukaPopup(this)">
+                    <div class="card-image-box">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPUehjyOBJFzmx3K5OQSIYalA12xDno7ZTI0UvGMyHXw&s=10" alt="Server">
+                    </div>
+                    <div class="card-info">
+                        <h3>Data Server</h3>
+                        <p>Pusat komputasi yang menyediakan resource, database, dan layanan klien.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 2: VIDEO -->
+        <section id="video" class="tab-content">
+            <div class="section-header text-center">
+                <span class="badge-glow">Learning Center</span>
+                <h2 class="gradient-text mt-2">Tutorial Konfigurasi</h2>
+            </div>
+            <div class="video-grid">
+                <div class="glass-card video-card">
+                    <div class="iframe-wrapper">
+                        <iframe src="https://www.youtube.com/embed/g2XT4WXebuU" title="Router Cisco" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                    <div class="card-info">
+                        <h3>Setup Dasar Router Cisco</h3>
+                        <p class="text-sm text-muted">CLI Commands & Basic Routing</p>
+                    </div>
+                </div>
+                <div class="glass-card video-card">
+                    <div class="iframe-wrapper">
+                        <iframe src="https://www.youtube.com/embed/2Yn1JcOXRLg" title="Switch VLAN" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                    <div class="card-info">
+                        <h3>Konfigurasi VLAN Switch</h3>
+                        <p class="text-sm text-muted">Segmentasi Jaringan Layer 2</p>
+                    </div>
+                </div>
+                <div class="glass-card video-card">
+                    <div class="iframe-wrapper">
+                        <iframe src="https://www.youtube.com/embed/deUuKZ2rIsM" title="Access Point" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                    <div class="card-info">
+                        <h3>Deploy Access Point</h3>
+                        <p class="text-sm text-muted">Wireless LAN Setup</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 3: LAYANAN -->
+        <section id="jasa" class="tab-content">
+            <div class="section-header text-center">
+                <span class="badge-glow">Enterprise Solutions</span>
+                <h2 class="gradient-text mt-2">Layanan Profesional</h2>
+            </div>
+            <div class="bento-grid">
+                <div class="glass-card service-card">
+                    <div class="icon-box">⚙️</div>
+                    <h3>Setup & Integrasi Jaringan</h3>
+                    <p>Desain topologi fisik & logikal, instalasi rack server, dan routing BGP/OSPF berskala industri.</p>
+                    <div class="price">Mulai Rp 250k</div>
+                    <a href="https://wa.me/6281528655901" target="_blank" class="btn-outline w-full text-center">Hubungi Teknisi</a>
+                </div>
+                <div class="glass-card service-card">
+                    <div class="icon-box">🖥️</div>
+                    <h3>Simulasi Packet Tracer</h3>
+                    <p>Pembuatan topologi virtual kompleks untuk kebutuhan analisis, presentasi, dan evaluasi jaringan.</p>
+                    <div class="price">Mulai Rp 50k</div>
+                    <a href="https://wa.me/6281528655901" target="_blank" class="btn-outline w-full text-center">Konsultasi Project</a>
+                </div>
+                <div class="glass-card service-card">
+                    <div class="icon-box">🔧</div>
+                    <h3>Maintenance & Troubleshooting</h3>
+                    <p>Audit performa jaringan, mitigasi loop, dan perbaikan latency/packet loss pada sistem berjalan.</p>
+                    <div class="price">Custom Quote</div>
+                    <a href="https://wa.me/6281528655901" target="_blank" class="btn-outline w-full text-center">Request Audit</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 4: PRODUK -->
+        <section id="produk" class="tab-content">
+            <div class="section-header text-center">
+                <h2 class="gradient-text">Katalog Hardware</h2>
+            </div>
+            <div class="bento-grid">
+                <div class="glass-card product-card">
+                    <div class="card-image-box">
+                        <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=500&q=80" alt="Kabel LAN">
+                    </div>
+                    <div class="card-info">
+                        <h3>Kabel UTP Cat6 (30m)</h3>
+                        <h4 class="price-text">Rp 150.000</h4>
+                        <a href="https://share.google/8nKkh05WLqq5JoLsk" target="_blank" class="btn-primary w-full text-center mt-2">Order via Shopee</a>
+                    </div>
+                </div>
+                <div class="glass-card product-card">
+                    <div class="card-image-box">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZE1RujkIBHBzOGAY6o747PSeHDFWyMRVLmcz3NZ2cmQ&s=10" alt="Switch Hub">
+                    </div>
+                    <div class="card-info">
+                        <h3>TP-Link Switch 8-Port Gigabit</h3>
+                        <h4 class="price-text">Rp 220.000</h4>
+                        <a href="https://id.shp.ee/DrqeRynS" target="_blank" class="btn-primary w-full text-center mt-2">Order via Shopee</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 5: GAME TERMINAL -->
+        <section id="game" class="tab-content">
+            <div class="terminal-container glass-panel">
+                <div class="terminal-header">
+                    <div class="dots"><span class="red"></span><span class="yellow"></span><span class="green"></span></div>
+                    <div class="terminal-title">root@netmaster:~# time_attack</div>
+                </div>
+                
+                <div class="terminal-body">
+                    <!-- Game Menu -->
+                    <div id="game-menu" class="text-center">
+                        <h2 class="gradient-text">NetMaster Time Attack</h2>
+                        <p class="mt-2 text-muted">Jawab pertanyaan protokol, routing, dan hardware dalam 30 detik.</p>
+                        <button class="btn-primary mt-4 pulse" onclick="startGame()">[ EXECUTE START ]</button>
+                        
+                        <div class="leaderboard-section mt-10">
+                            <h3><span class="text-accent">></span> Papan Skor Global</h3>
+                            <table class="glass-table mt-4">
+                                <thead>
+                                    <tr><th>Rank</th><th>User</th><th>Score</th></tr>
+                                </thead>
+                                <tbody id="leaderboard-body"></tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Game Play -->
+                    <div id="game-play" style="display: none;">
+                        <div class="progress-bar-bg">
+                            <div id="timer-bar" class="progress-bar-fill"></div>
+                        </div>
+                        <div class="flex-between mt-2">
+                            <span class="text-accent">TIME_REMAINING:</span>
+                            <span id="time-text" class="timer-digit">30s</span>
+                        </div>
+                        
+                        <div class="question-box mt-4">
+                            <span class="text-accent">QUERY: </span>
+                            <span id="question-text">Loading protocol...</span>
+                        </div>
+                        
+                        <div id="options-container" class="options-grid mt-6">
+                            <button class="btn-terminal" onclick="checkAnswer(0)">A</button>
+                            <button class="btn-terminal" onclick="checkAnswer(1)">B</button>
+                            <button class="btn-terminal" onclick="checkAnswer(2)">C</button>
+                            <button class="btn-terminal" onclick="checkAnswer(3)">D</button>
+                        </div>
+                    </div>
+
+                    <!-- Game Over -->
+                    <div id="game-over" class="text-center" style="display: none;">
+                        <h2 class="text-red">SYSTEM HALTED: TIMEOUT</h2>
+                        <p class="mt-2">Total Score Achieved:</p>
+                        <h1 id="final-score" class="score-display">0</h1>
+                        
+                        <div class="save-score-box mt-6">
+                            <input type="text" id="playerName" class="input-glass" placeholder="Enter Username...">
+                            <button class="btn-primary mt-4" onclick="saveScore()">Save Record</button>
+                        </div>
+                        <button class="btn-outline mt-4" onclick="resetGameMenu()">Return to Main Menu</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- KOTAK POP-UP ENSIKLOPEDIA (Glass Modal) -->
+        <div id="kotakPopup" class="modal-overlay" onclick="tutupPopup()">
+            <div class="glass-modal" onclick="event.stopPropagation()">
+                <button class="close-modal" onclick="tutupPopup()">&times;</button>
+                <img id="gambarPopup" src="" alt="Hardware">
+                <div class="modal-content">
+                    <h3 id="judulPopup" class="gradient-text">Judul</h3>
+                    <p id="teksPopup" class="mt-2">Deskripsi</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- FOOTER / ABOUT US -->
+        <footer class="glass-footer">
+            <div class="footer-container text-center">
+                <div class="logo-box" style="margin: 0 auto 1rem auto; width: 65px; height: 65px;">
+                    <img src="sknim.png" alt="Logo Skanam" class="logo-img">
+                </div>
+                
+                <h3 class="gradient-text">HASOMAN NETWORK</h3>
+                <p class="mt-2 text-muted text-sm">Sistem Pembelajaran & Layanan Infrastruktur IT Terpadu</p>
+                
+                <div class="credit-box glass-panel mt-4">
+                    <p style="color: var(--accent); font-weight: 600; margin-bottom: 0.5rem;">About The Developer</p>
+                    <p class="text-sm">Platform ini dirancang dan dikembangkan oleh siswa jurusan <strong>Teknik Komputer dan Jaringan (TKJ)</strong> dari <strong>SMK Negeri 6 Balikpapan</strong>.</p>
+                    <p class="text-sm mt-2 text-muted">Muhammad Nour Rizky(Promt Engineer),Rounas Alfas Sidqi(Designer),Muhammad Aqila Denish P.D(Projek Manager),Joan Fritzi Hikaru(Promt Engineer Visual),Dzaky Putra Nur Rafi(Quality Assurance).</p>
+                </div>
+                
+                <div class="social-links mt-6">
+                    <a href="#" class="text-accent">Instagram</a> • 
+                    <a href="#" class="text-accent">GitHub</a> • 
+                    <a href="#" class="text-accent">LinkedIn</a>
+                </div>
+                
+                <p class="text-muted mt-6 text-sm">&copy; 2026 Hasoman. All Rights Reserved.</p>
+            </div>
+        </footer>
+
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>
